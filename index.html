@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Top Out of Sight</title>
-<meta name="description" content="Top Out of Sight — Heritage | Elegance | Taste">
+<meta name="description" content="Top Out of Sight — Heritage | Prestige | Affluence">
 <style>
   :root { --green: #222b1a; --green-deep: #1a2114; --cream: 236, 233, 222; }
   html, body { margin: 0; height: 100%; }
   body {
     min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
     background: radial-gradient(ellipse at center, var(--green) 0%, var(--green-deep) 100%);
     overflow: hidden;
   }
@@ -21,7 +21,7 @@
   }
   .logo {
     position: relative;
-    width: min(62vw, 88vh, 760px);
+    width: min(48vw, 60vh, 580px);
     opacity: 0;
     animation: reveal 2.4s ease-out .3s forwards;
   }
@@ -30,7 +30,7 @@
     pointer-events: none; user-select: none; -webkit-user-select: none;
   }
   /* Real text laid exactly over the lettering: invisible, but selectable and copyable */
-  .text { position: absolute; inset: 0; margin: 0; font: inherit; }
+  .text { position: absolute; inset: 0; margin: 0; }
   .line {
     position: absolute; display: block; margin: 0;
     font-family: Georgia, "Times New Roman", serif; font-weight: 400;
@@ -39,13 +39,40 @@
   }
   .line .t { display: inline-block; transform-origin: left top; }
   .line::selection, .line *::selection { background: rgba(var(--cream), .28); color: transparent; }
-  .line::-moz-selection { background: rgba(var(--cream), .28); color: transparent; }
+  .line::-moz-selection, .line *::-moz-selection { background: rgba(var(--cream), .28); color: transparent; }
+
+  /* Social links */
+  .social {
+    position: relative;
+    display: flex; gap: clamp(22px, 3vw, 34px);
+    margin-top: clamp(36px, 6vh, 64px);
+    opacity: 0;
+    animation: reveal 2s ease-out 1.6s forwards;
+  }
+  .social a {
+    display: block;
+    padding: 6px;
+    opacity: .7;
+    transition: opacity .4s ease, transform .4s ease;
+  }
+  .social a:hover, .social a:focus-visible {
+    opacity: 1;
+    transform: translateY(-2px);
+    outline: none;
+  }
+  .social a:focus-visible { box-shadow: 0 1px 0 rgba(var(--cream), .8); }
+  .social img {
+    display: block;
+    width: clamp(20px, 1.9vw, 24px);
+    height: auto;
+  }
+
   @keyframes reveal {
     from { opacity: 0; transform: translateY(8px); filter: blur(3px); }
     to   { opacity: 1; transform: none; filter: none; }
   }
-  @media (max-width: 600px) { .logo { width: 84vw; } }
-  @media (prefers-reduced-motion: reduce) { .logo { animation: none; opacity: 1; } }
+  @media (max-width: 600px) { .logo { width: 76vw; } }
+  @media (prefers-reduced-motion: reduce) { .logo, .social { animation: none; opacity: 1; } }
 </style>
 </head>
 <body>
@@ -53,12 +80,16 @@
     <img alt="" aria-hidden="true" src="logo.webp">
     <div class="text">
       <h1 style="margin:0;font-size:inherit">
-        <span class="line" style="left:16.571%;top:29.471%;width:82.143%;height:22.478%"><span class="t">TOP OUT </span></span>
-        <span class="line" style="left:10.929%;top:56.643%;width:78.357%;height:22.677%"><span class="t">OF SIGHT</span></span>
+        <span class="line" style="left:16.571%;top:29.324%;width:82.143%;height:22.863%"><span class="t">TOP OUT </span></span>
+        <span class="line" style="left:10.929%;top:56.859%;width:78.357%;height:22.565%"><span class="t">OF SIGHT</span></span>
       </h1>
-      <p class="line" style="left:10.357%;top:91.708%;width:79.143%;height:6.494%"><span class="t">HERITAGE | ELEGANCE | TASTE</span></p>
+      <p class="line" style="left:4.429%;top:91.750%;width:90.929%;height:6.461%"><span class="t">HERITAGE | PRESTIGE | AFFLUENCE</span></p>
     </div>
   </main>
+  <nav class="social" aria-label="Social media">
+    <a href="https://www.instagram.com/topoutofsight/" target="_blank" rel="noopener" aria-label="Instagram"><img src="instagram.png" alt=""></a>
+    <a href="https://www.tiktok.com/@topoutofsight" target="_blank" rel="noopener" aria-label="TikTok"><img src="tiktok.png" alt=""></a>
+  </nav>
 <script>
   // Stretch each invisible text line to cover its lettering exactly, at any screen size.
   function fit() {
